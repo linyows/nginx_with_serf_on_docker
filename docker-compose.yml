@@ -1,0 +1,19 @@
+lb:
+  build: ./lb
+  volumes:
+    - ./lb:/var/www/html
+  ports:
+    - '8080:80'
+    - '7946'
+web:
+  build: ./web
+  volumes:
+    - ./web:/var/www/html
+  links:
+    - lb:serf
+webrelease:
+  build: ./web
+  volumes:
+    - ./webrelease:/var/www/html
+  links:
+    - lb:serf
